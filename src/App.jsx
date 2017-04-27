@@ -24,13 +24,51 @@ class App extends Component {
               .limit(20)
               .order('age')
               .getRows()
-                .on('success', inmates => console.log(inmates))
-                .on('error', error => console.error(error))
+                .on('success', inmates => (
+                  <table>
+
+                    <thead>
+                      <tr>
+                        <th>Download Date</th>
+                        <th>Identifier</th>
+                        <th>Gender</th>
+                        <th>Race</th>
+                        <th>Age</th>
+                        <th>Bail Amount</th>
+                        <th>Offense</th>
+                        <th>Latest Admission Date</th>
+                        <th>Facility</th>
+                        <th>Detainer</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                    {
+                      inmates.map(inmate => (
+                        <tr>
+                          <td>{inmate.download_date}</td>
+                          <td>{inmate.identifier}</td>
+                          <td>{inmate.gender}</td>
+                          <td>{inmate.race}</td>
+                          <td>{inmate.age}</td>
+                          <td>{inmate.bond_amount}</td>
+                          <td>{inmate.offense}</td>
+                          <td>{inmate.latest_admission_date}</td>
+                          <td>{inmate.facility}</td>
+                          <td>{inmate.detainer}</td>
+                        </tr>
+                      ))
+                    }
+                    </tbody>
+
+                  </table>
+                ))
+                .on('error', (error) => console.error(error))
           }
         </div>
 
       </div>
-    );
+    )
   }
 }
 
