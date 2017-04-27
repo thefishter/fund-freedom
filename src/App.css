@@ -1,0 +1,20 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #222;
+  height: 200px;
+  padding: 20px;
+  color: white;
+  font-size: 25px;
+  font-family: 'Playfair Display', serif;
+  font-style: bold;
+}
+
+.App-intro {
+  font-size: 20px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-style: italic;
+}
+
