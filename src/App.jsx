@@ -20,6 +20,7 @@ class App extends Component {
     consumer.query()
       .withDataset('bvbe-957i')
       .limit(15)
+      .order('bond_amount desc')
       .getRows()
         .on('success', inmates =>
           this.setState({ queryResults: inmates }))
