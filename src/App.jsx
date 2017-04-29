@@ -3,6 +3,7 @@ import { Consumer } from 'soda-js'
 
 import './App.css'
 import DataTable from './DataTable'
+import Navbar from './Navbar'
 
 let consumer = new Consumer('data.ct.gov')
 
@@ -36,7 +37,9 @@ class App extends Component {
           <h4>a tool to combat wealth-based jailing through real-time visualization and donation</h4>
         </header>
 
-        <nav>
+        <Navbar />
+
+        {/*<nav>
           <div className="NavButton">
             <a href="/about/">About</a>
           </div>
@@ -52,7 +55,7 @@ class App extends Component {
           <div className="NavButton">
             <a href="/donate/">Donate</a>
           </div>
-        </nav>
+        </nav>*/}
 
         <br/>
         
