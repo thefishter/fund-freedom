@@ -30,14 +30,47 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="App-header">
+
+        <header>
           <h1>FUND FREEDOM</h1>
-          <p className="App-intro">
-            a tool to combat wealth-based jailing through real-time visualization and donation
-          </p>
-          <br />
-        </div>
-        <DataTable inmates={this.state.queryResults} />
+          <h4>a tool to combat wealth-based jailing through real-time visualization and donation</h4>
+        </header>
+
+        <nav>
+          <div className="NavButton">
+            <a href="/about/">About</a>
+          </div>
+          <div className="NavButton">
+            <a href="/visualize/">Interactive Visualization</a>
+          </div>
+          <div className="NavButton">
+            <a href="/datatable/">Real Time Dataset</a>
+          </div>
+          <div className="NavButton">
+            <a href="/trends/">Highlighted Trends</a>
+          </div>
+          <div className="NavButton">
+            <a href="/donate/">Donate</a>
+          </div>
+        </nav>
+
+        <br/>
+        
+        <section>
+
+          <aside>Sliders and Filters
+            <input type="range" min="0" max="100" />
+            <input type="range" min="0" max="100" />
+            <input type="range" min="0" max="100" />
+            <input type="range" min="0" max="100" />
+          </aside>
+
+          <main>
+            <DataTable inmates={this.state.queryResults} />
+          </main>
+
+        </section>
+
       </div>
     )
   }

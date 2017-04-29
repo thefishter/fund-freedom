@@ -17,9 +17,8 @@ const DataTable = (props) => {
             <th>Age</th>
             <th>Bail</th>
             <th>Offense</th>
-            <th>Latest Admission Date</th>
+            <th>Latest Admission</th>
             <th>Facility</th>
-            <th>Detainer</th>
           </tr>
         </thead>
       
@@ -43,7 +42,6 @@ const DataTable = (props) => {
               <td>{inmate.offense}</td>
               <td>{inmate.latest_admission_date.slice(0, 10)}</td>
               <td>{inmate.facility}</td>
-              <td>{inmate.detainer}</td>
             </tr>
           ))
         }

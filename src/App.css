@@ -1,25 +1,42 @@
 .App {
-  text-align: center;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 14px;
 }
 
-.App-header {
+header {
   background-color: #222;
-  height: 200px;
   padding: 20px;
+  text-align: center;
   color: white;
-  font-size: 25px;
+}
+
+h1 {
+  font-size: 40px;
   font-family: 'Playfair Display', serif;
   font-style: bold;
 }
 
-.App-intro {
-  font-size: 20px;
-  font-family: 'Source Sans Pro', sans-serif;
+h4 {
+  font-size: 18px;
   font-style: italic;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  height: 35px;
+}
+
+section {
+  display: flex;
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
 }
 
 .DataTable {
   font-size: 13px;
-  font-family: 'Source Sans Pro', sans-serif;
-  font-style: normal;
 }
