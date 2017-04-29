@@ -37,16 +37,32 @@ class App extends Component {
         </header>
 
         <nav>
-          <a href="/about/">About</a> |
-          <a href="/visualize/">Interactive Visualization</a> |
-          <a href="/datatable/">Real Time Dataset</a> |
-          <a href="/trends/">Highlighted Trends</a> |
-          <a href="/donate/">Donate</a>
+          <div className="NavButton">
+            <a href="/about/">About</a>
+          </div>
+          <div className="NavButton">
+            <a href="/visualize/">Interactive Visualization</a>
+          </div>
+          <div className="NavButton">
+            <a href="/datatable/">Real Time Dataset</a>
+          </div>
+          <div className="NavButton">
+            <a href="/trends/">Highlighted Trends</a>
+          </div>
+          <div className="NavButton">
+            <a href="/donate/">Donate</a>
+          </div>
         </nav>
 
+        <br/>
+        
         <section>
 
           <aside>Sliders and Filters
+            <input type="range" min="0" max="100" />
+            <input type="range" min="0" max="100" />
+            <input type="range" min="0" max="100" />
+            <input type="range" min="0" max="100" />
           </aside>
 
           <main>
