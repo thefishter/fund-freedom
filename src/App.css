@@ -1,18 +1,18 @@
-.App {
+header {
+  /*display: flex;*/
+  background-color: #222;
+  padding: 20px;
   text-align: center;
+  color: white;
 }
 
-.App-header {
-  background-color: #222;
-  height: 200px;
-  padding: 20px;
-  color: white;
-  font-size: 25px;
+h1 {
+  font-size: 40px;
   font-family: 'Playfair Display', serif;
   font-style: bold;
 }
 
-.App-intro {
+h4 {
   font-size: 20px;
   font-family: 'Source Sans Pro', sans-serif;
   font-style: italic;
