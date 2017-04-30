@@ -37,7 +37,7 @@ h4 {
   padding-bottom: 6px;
 }
 
-section {
+.DataLayout {
   display: flex;
 }
 
