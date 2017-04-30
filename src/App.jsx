@@ -39,24 +39,6 @@ class App extends Component {
 
         <Navbar />
 
-        {/*<nav>
-          <div className="NavButton">
-            <a href="/about/">About</a>
-          </div>
-          <div className="NavButton">
-            <a href="/visualize/">Interactive Visualization</a>
-          </div>
-          <div className="NavButton">
-            <a href="/datatable/">Real Time Dataset</a>
-          </div>
-          <div className="NavButton">
-            <a href="/trends/">Highlighted Trends</a>
-          </div>
-          <div className="NavButton">
-            <a href="/donate/">Donate</a>
-          </div>
-        </nav>*/}
-
         <br/>
         
         <section>

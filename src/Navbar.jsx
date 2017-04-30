@@ -10,7 +10,7 @@ class Navbar extends Component {
 
   render() {
     return (
-      <Nav bsStyle="pills" activeKey={1} onSelect={this.handleSelect}>
+      <Nav bsStyle="tabs" activeKey={1} onSelect={this.handleSelect}>
         <NavItem eventKey={1} href="/about/">About</NavItem>
         <NavItem eventKey={2} href="/visualize/">Interactive Visualization</NavItem>
         <NavItem eventKey={3} href="/datatable/">Real Time Dataset</NavItem>
