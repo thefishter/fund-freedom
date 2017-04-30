@@ -21,14 +21,23 @@ h4 {
   font-style: italic;
 }
 
-nav {
+.nav {
   display: flex;
   justify-content: space-around;
   align-items: flex-end;
-  height: 35px;
 }
 
-section {
+.nav-tabs {
+  height: 55px;
+}
+
+.nav>li>a {
+  text-align: center;
+  padding-top: 4px;
+  padding-bottom: 6px;
+}
+
+.DataLayout {
   display: flex;
 }
 
