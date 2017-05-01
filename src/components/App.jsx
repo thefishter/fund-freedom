@@ -16,8 +16,6 @@ class App extends Component {
         </header>
 
         <Navbar />
-
-        <br/>
         
         <main>
           {this.props.children}
