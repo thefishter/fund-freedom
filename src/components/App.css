@@ -108,6 +108,11 @@ form {
   margin-right: 21px;
 }
 
+.numberRange {
+  display: flex;
+  justify-content: space-between;
+}
+
 /* React range slider */
 
 .range-slider {

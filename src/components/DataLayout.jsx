@@ -93,6 +93,10 @@ class DataLayout extends Component {
                 defaultValue={[0, 500000]} withBars
                 onChange={this.setRangeFilter('bond_amount')}
                 />
+              <div className="numberRange">
+                <p>$0</p>
+                <p>$500,000</p>
+              </div>
               </p>
             </div>
             <div className="ageSlider">
@@ -104,7 +108,12 @@ class DataLayout extends Component {
                 min={15} max={90}
                 defaultValue={[15, 90]} withBars
                 onChange={this.setRangeFilter('age')}
-                /></p>
+              />
+              <div className="numberRange">
+                <p>15</p>
+                <p>90</p>
+              </div>
+              </p>
             </div>
             <div className="recencySlider">
               <p>Date of Information
@@ -114,7 +123,12 @@ class DataLayout extends Component {
                 handleClassName="range-slider-handle"
                 defaultValue={[0, 100]} withBars
                 onChange={this.setRangeFilter('bond_amount')}
-              /></p>
+              />
+              <div className="numberRange">
+                <p>5/9/1996</p>
+                <p>today</p>
+              </div>
+              </p>
             </div>
             <br/>
             <p>Gender<br/>
