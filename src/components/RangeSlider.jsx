@@ -35,7 +35,6 @@ class RangeSlider extends Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <div style={this.props.style} className={this.props.className + ' W(100%)'}>
         {/*display range start number*/}

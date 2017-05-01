@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Consumer } from 'soda-js'
-import RangeSlider from './RangeSlider';
+import ReactSlider from 'react-slider'
 
 let consumer = new Consumer('data.ct.gov')
 
@@ -9,14 +9,28 @@ class DataLayout extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      queryResults: []
+      queryResults: [],
+      checked_gender: {
+        M: true,
+        F: true
+      },
+      checked_race: {
+        BLACK: true,
+        HISPANIC: true,
+        WHITE: true
+      }
     }
-    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  componentWillMount() {
+  componentDidMount () {
+    this.query()
+  }
+
+  query = () => {
+    console.log('in query for ', this.state, this.where)
     consumer.query()
       .withDataset('bvbe-957i')
+      .where(this.where)
       .limit(15)
       .order('download_date desc')
       .getRows()
@@ -25,8 +39,40 @@ class DataLayout extends Component {
         .on('error', error => console.error(error))
   }
 
-  handleSubmit(event) {
+  setRangeFilter (field) {
+    return ([min, max]) =>
+      this.setState(
+        { [`filter_${field}`]: `${field} >= ${min} and ${field} <= ${max}` },
+        this.query)
+  }
 
+  setBoolFilter (field) {
+    return ({target: {checked, value}}) => this.setState(previous => {
+      console.log('will update state for', field, checked, value)
+      const stateKey = `checked_${field}`
+          , oldState = previous[stateKey] || {}
+          , state = {...oldState}
+      if (checked)
+        state[value] = true
+      else
+        delete state[value]
+      return { [stateKey]: state }
+    }, this.query)
+  }
+
+  get where () {
+    let filtered = Object.keys(this.state).filter(key => key.startsWith('filter_'))
+      .map(key => this.state[key])
+
+    let checked = Object.keys(this.state).filter(key => key.startsWith('checked_'))
+      .map(key => {
+        let acceptable = this.state[key]
+        let field = key.slice('checked_'.length)
+        return Object.keys(acceptable).map(value => `${field} = "${value}"`)
+          .join(' or ')
+      })
+
+    return [...filtered, ...checked].filter(x => x).join(' and ') || true
   }
 
   render() {
@@ -34,70 +80,93 @@ class DataLayout extends Component {
       <div className="DataLayout">
 
         <aside>Filters
+          <br/>{/*{this.where}*/}
           <br/>
           <form onSubmit={this.handleSubmit}>
             <div className="bailSlider">
               <p>Bail Amount
-              <RangeSlider
-                min={0}
-                max={10000000}
-                minRange={100}
-                onChange={(state) => {
-                  console.log('react-dual-rangeslider max: ', state.max)
-                  console.log('react-dual-rangeslider min: ', state.min)
-                }}
-                step={1000}
-              /></p>
+              <ReactSlider
+                className="range-slider"
+                barClassName="range-slider-bar"
+                handleClassName="range-slider-handle"
+                min={0} max={500000}
+                defaultValue={[0, 500000]} withBars
+                onChange={this.setRangeFilter('bond_amount')}
+                />
+              </p>
             </div>
             <div className="ageSlider">
               <p>Age Range
-              <RangeSlider
-                min={15}
-                max={90}
-                minRange={1}
-                onChange={(state) => {
-                  console.log('react-dual-rangeslider max: ', state.max)
-                  console.log('react-dual-rangeslider min: ', state.min)
-                }}
-                step={1}
-              /></p>
+              <ReactSlider
+                className="range-slider"
+                barClassName="range-slider-bar"
+                handleClassName="range-slider-handle"
+                min={15} max={90}
+                defaultValue={[15, 90]} withBars
+                onChange={this.setRangeFilter('age')}
+                /></p>
             </div>
             <div className="recencySlider">
               <p>Date of Information
-              <RangeSlider
-                min={0}
-                max={100}
-                minRange={10}
-                onChange={(state) => {
-                  console.log('react-dual-rangeslider max: ', state.max)
-                  console.log('react-dual-rangeslider min: ', state.min)
-                }}
-                step={1}
+              <ReactSlider
+                className="range-slider"
+                barClassName="range-slider-bar"
+                handleClassName="range-slider-handle"
+                defaultValue={[0, 100]} withBars
+                onChange={this.setRangeFilter('bond_amount')}
               /></p>
             </div>
-            <div className="genderSelect">
-              <p>Gender<br/>
-              <input type="checkbox" name="gender" value="m" />male<br/>
-              <input type="checkbox" name="gender" value="f" />female
-              </p>
-            </div>
-            <div className="raceSelect">
-              <p>Race<br/>
-              <input type="checkbox" name="race" value="black" />Black<br/>
-              <input type="checkbox" name="race" value="hispanic" />Hispanic<br/>
-              <input type="checkbox" name="race" value="white" />White
-              </p>
-            </div>
-            <div className="crimeSelect">
-              <p>Crime Severity<br/>
-              <input type="checkbox" name="crimeSeverity" value="felony" />felony<br/>
-              <input type="checkbox" name="crimeSeverity" value="misdemeanor" />misdemeanor<br/>
-              <input type="checkbox" name="crimeClass" value="classA" />A<br/>
-              <input type="checkbox" name="crimeClass" value="classB" />B<br/>
-              <input type="checkbox" name="crimeClass" value="classC" />C<br/>
-              <input type="checkbox" name="crimeClass" value="classD" />D<br/>
-              </p>
-            </div>
+            <br/>
+            <p>Gender<br/>
+              <div className="genderSelect">
+                <div>
+                  <input type="checkbox" name="gender" value="M" 
+                    checked={this.state.checked_gender.M} 
+                    onChange={this.setBoolFilter("gender")}/> male<br/>
+                </div>
+                <div>
+                  <input type="checkbox" name="gender" value="F" 
+                    checked={this.state.checked_gender.F} 
+                    onChange={this.setBoolFilter("gender")}/> female
+                </div>
+              </div>
+            </p>
+            <p>Race<br/>
+              <div className="raceSelect">
+                <div>
+                  <input type="checkbox" name="race" value="BLACK" 
+                    checked={this.state.checked_race.BLACK} 
+                    onChange={this.setBoolFilter("race")} 
+                  /> Black<br/>
+                </div>
+                <div>
+                  <input type="checkbox" name="race" value="HISPANIC"
+                    checked={this.state.checked_race.HISPANIC} 
+                    onChange={this.setBoolFilter("race")} 
+                   /> Hispanic<br/>
+                </div>
+                <div>
+                  <input type="checkbox" name="race" value="WHITE" 
+                    checked={this.state.checked_race.WHITE}
+                    onChange={this.setBoolFilter("race")} 
+                  /> White
+                </div>
+              </div>
+            </p>
+            <p>Crime Severity<br/>
+              <div className="crimeSelect">
+                <div className="crimeSeverity">
+                  <input type="checkbox" name="crimeSeverity" value="felony" /> felony<br/>
+                  <input type="checkbox" name="crimeSeverity" value="misdemeanor" /> misdemeanor<br/>
+                </div>
+                <div className="crimeClass">
+                  <input type="checkbox" name="crimeClass" value="classA" /> A<br/>
+                  <input type="checkbox" name="crimeClass" value="classB" /> B<br/>
+                  <input type="checkbox" name="crimeClass" value="classC" /> C<br/>
+                  <input type="checkbox" name="crimeClass" value="classD" /> D<br/>
+                </div>
+              </div>
+            </p>
           </form>
         </aside>
 
