@@ -113,6 +113,10 @@ form {
   justify-content: space-between;
 }
 
+.recencySlider {
+  margin-bottom: 4px;
+}
+
 /* React range slider */
 
 .range-slider {

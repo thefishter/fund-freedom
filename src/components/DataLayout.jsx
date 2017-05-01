@@ -68,8 +68,8 @@ class DataLayout extends Component {
       .map(key => {
         let acceptable = this.state[key]
         let field = key.slice('checked_'.length)
-        return Object.keys(acceptable).map(value => `${field} = "${value}"`)
-          .join(' or ')
+        return `(${Object.keys(acceptable).map(value => `${field} = "${value}"`)
+          .join(' or ')})`
       })
 
     return [...filtered, ...checked].filter(x => x).join(' and ') || true
@@ -80,11 +80,11 @@ class DataLayout extends Component {
       <div className="DataLayout">
 
         <aside>Filters
-          <br/>{/*{this.where}*/}
+          <br/>
           <br/>
           <form onSubmit={this.handleSubmit}>
             <div className="bailSlider">
-              <p>Bail Amount
+              Bail Amount
               <ReactSlider
                 className="range-slider"
                 barClassName="range-slider-bar"
@@ -97,10 +97,9 @@ class DataLayout extends Component {
                 <p>$0</p>
                 <p>$500,000</p>
               </div>
-              </p>
             </div>
             <div className="ageSlider">
-              <p>Age Range
+              Age Range
               <ReactSlider
                 className="range-slider"
                 barClassName="range-slider-bar"
@@ -113,10 +112,9 @@ class DataLayout extends Component {
                 <p>15</p>
                 <p>90</p>
               </div>
-              </p>
             </div>
             <div className="recencySlider">
-              <p>Date of Information
+              Date of Information
               <ReactSlider
                 className="range-slider"
                 barClassName="range-slider-bar"
@@ -128,9 +126,7 @@ class DataLayout extends Component {
                 <p>5/9/1996</p>
                 <p>today</p>
               </div>
-              </p>
             </div>
-            <br/>
             <p>Gender<br/>
               <div className="genderSelect">
                 <div>
