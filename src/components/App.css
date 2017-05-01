@@ -38,6 +38,7 @@ h4 {
 }
 
 main {
+  display: flex;
   margin: 20px 20px;
 }
 
@@ -45,13 +46,25 @@ main {
   display: flex;
 }
 
-aside {
-  display: flex;
-  flex-direction: column;
+.DataRender {
+  margin: 0px 20px;
+  font-size: 13px;
 }
 
 .DataTable {
-  font-size: 13px;
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+th, td {
+  padding: 0px 5px;
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
+  width: 150px;
 }
 
 .DonateOptions {
@@ -65,4 +78,8 @@ aside {
   flex-basis: 100%;
   display: inline-block;
   text-align: center;
+}
+
+form {
+  font-size: 11px;
 }

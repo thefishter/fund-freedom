@@ -10,7 +10,7 @@ const DataTable = (props) => {
       
         <thead>
           <tr>
-            <th>Download Date</th>
+            <th>Downloaded</th>
             <th>Identifier</th>
             <th>Gender</th>
             <th>Race</th>
